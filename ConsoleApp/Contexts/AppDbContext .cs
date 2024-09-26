@@ -19,7 +19,7 @@ namespace ConsoleApp.Contexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Setting.LoadJson());
+                optionsBuilder.UseSqlServer(Setting.GetConnectionString());
             }
         }
 
@@ -30,7 +30,7 @@ namespace ConsoleApp.Contexts
         public AppDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlServer(Setting.LoadJson()); // Ensure this loads the correct connection string
+            optionsBuilder.UseSqlServer(Setting.GetConnectionString());
 
             return new AppDbContext(optionsBuilder.Options);
         }

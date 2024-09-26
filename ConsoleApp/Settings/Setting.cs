@@ -9,7 +9,7 @@ namespace ConsoleApp.Settings
 {
     public static class Setting
     {
-        public static string LoadJson()
+        public static string GetConnectionString()
         {
             return "Server=host.docker.internal,1430;User ID=sa;Password=admin1234@;Database=ConsoleDb;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=True;MultipleActiveResultSets=True";
 
@@ -21,7 +21,7 @@ namespace ConsoleApp.Settings
         {
             var serviceProvider = new ServiceCollection()
          .AddDbContext<AppDbContext>(options =>
-             options.UseSqlServer(Setting.LoadJson()))
+             options.UseSqlServer(Setting.GetConnectionString()))
          .BuildServiceProvider();
 
             return serviceProvider;
